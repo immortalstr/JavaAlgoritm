@@ -1,17 +1,18 @@
-package org.example;
+package Task2;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Random;
 
-public class Task2 {
+public class Ex2 {
     public static void main(String[] args) {
         int size = 10000;
         int min = 0;
         int max = 10000;
-        int[] arr = Main.getRandomArr(size, max, min);
+        int[] arr = getRandomArr(size, max, min);
         long start1 = new Date().getTime();
-        Main.bubbleSort(arr.clone());
+        bubbleSort(arr.clone());
         long end1 = new Date().getTime();
         System.out.println(end1 - start1);
         long start = new Date().getTime();
@@ -22,6 +23,29 @@ public class Task2 {
         Arrays.sort(arr.clone());
         long end2 = new Date().getTime();
         System.out.println(end2 - start2);
+    }
+   protected static int[] getRandomArr(int size, int max, int min) {
+        Random rnd = new Random();
+        int[] arr = new int[size];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = rnd.nextInt((max - min) + 1) + min;
+        }
+        return arr;
+    }
+
+    protected static void bubbleSort(int[] arr) {
+        boolean fin = true;
+        do {
+            fin = true;
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    arr[i] += arr[i + 1];
+                    arr[i + 1] = arr[i] - arr[i + 1];
+                        arr[i] -= arr[i + 1];
+                        fin = false;
+                    }
+                }
+            } while(!fin);
     }
 
     /**
