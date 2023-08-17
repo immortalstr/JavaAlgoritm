@@ -1,13 +1,27 @@
-package Task2;
+package org.example;
 
-public class Ex2 {
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+
+public class Task2 {
     public static void main(String[] args) {
-        int size = 100;
+        int size = 10000;
         int min = 0;
-        int max = 100;
+        int max = 10000;
         int[] arr = Main.getRandomArr(size, max, min);
-        Main.print(arr);
-        quickSort(arr);
+        long start1 = new Date().getTime();
+        Main.bubbleSort(arr.clone());
+        long end1 = new Date().getTime();
+        System.out.println(end1 - start1);
+        long start = new Date().getTime();
+        quickSort(arr.clone());
+        long end = new Date().getTime();
+        System.out.println(end - start);
+        long start2 = new Date().getTime();
+        Arrays.sort(arr.clone());
+        long end2 = new Date().getTime();
+        System.out.println(end2 - start2);
     }
 
     /**
